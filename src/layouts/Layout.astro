@@ -1,0 +1,21 @@
+---
+import Head from '@/layouts/Head.astro';
+import '@/styles/globals.css';
+import { ViewTransitions } from 'astro:transitions';
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <Head {title} {description} {image} />
+  <body class='w-screen h-screen'>
+    <ViewTransitions />
+    <slot><main class='w-screen h-screen m-auto'>Loading...</main></slot>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+---
+
+<div
+  class='w-[380px] h-[380px] object-cover object-center relative overflow-hidden'
+>
+  <blockquote
+    class='instagram-media bg-white border absolute -top-20'
+    eapps-link='image'
+  >
+    <a href=`${url}/?utm_source=ig_embed` target='_blank'>
+      <Image
+        src=`${url}`
+        alt={url + 'Image'}
+        width={'380'}
+        height={'380'}
+        class='eapps-instagram-feed-posts-item-image'
+        format='avif'
+        loading={'lazy'}
+        fetchpriority={'low'}
+        decoding={'async'}
+        quality='low'
+      />
+    </a>
+  </blockquote>
+</div>
+
+<script async src='//www.instagram.com/embed.js'></script>

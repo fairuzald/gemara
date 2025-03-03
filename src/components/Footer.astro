@@ -1,0 +1,82 @@
+---
+import { Button } from '@/components/ui/button';
+import { contactList, socialIconData } from '@/data/footer-data';
+import { Image } from 'astro:assets';
+---
+
+<footer
+  class='bg-white text-gray-600 font-inter text-sm lg:text-base divide-y-2 divide-gray-300 flex flex-col'
+>
+  <div class='flex justify-between px-10 gap-5 py-14 lg:px-32'>
+    <div class='flex flex-col gap-2 max-w-[350px]'>
+      <Image
+        data-cy='footer-logo'
+        src='/logo.svg'
+        format='avif'
+        width={150}
+        height={40}
+        alt={'Logo'}
+      />
+      <p class='text-gray-700 font-bold' data-cy='footer-contact-us'>
+        Contact Us
+      </p>
+      <ul class='flex flex-col gap-1' data-cy='footer-contact-list'>
+        {
+          contactList.map((item) => {
+            return item.link ? (
+              <li>
+                <a
+                  href={item.link}
+                  target='_blank'
+                  data-cy={`footer-${item.name}`}
+                  class='hover:underline hover:underline-offset-2'
+                >
+                  {item.name}: {item.text}
+                </a>
+              </li>
+            ) : (
+              <li>
+                {item.name}: {item.text}
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+    <ul class='flex flex-col gap-4' data-cy='footer-contact-icon'>
+      {
+        socialIconData.map((item) => {
+          return (
+            <li>
+              <Button
+                size={'icon'}
+                className='rounded-full bg-white shadow-lg drop-shadow-lg'
+                variant={'ghost'}
+              >
+                <a
+                  href={item.href}
+                  target='_blank'
+                  data-cy={`footer-${item.alt}`}
+                >
+                  <Image
+                    format='avif'
+                    src={item.url}
+                    alt={item.alt}
+                    width='20'
+                    height='20'
+                  />
+                </a>
+              </Button>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+  <p
+    class='flex-1 w-full text-center p-2 lg:pb-4 lg:pt-3'
+    data-cy='footer-copyright'
+  >
+    2024 Gemara
+  </p>
+</footer>

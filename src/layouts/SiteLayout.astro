@@ -1,0 +1,38 @@
+---
+import Footer from '@/components/Footer.astro';
+import WhatsappButton from '@/components/WhatsappButton.astro';
+import Navbar from '@/components/navbar';
+import { Toaster } from '@/components/ui/toaster';
+import Head from '@/layouts/Head.astro';
+import '@/styles/globals.css';
+import { ViewTransitions } from 'astro:transitions';
+import { Toaster as Toast } from 'react-hot-toast';
+
+interface Props {
+  title: string;
+  description: string;
+  urlSite: string;
+  noIndex?: boolean;
+}
+
+const { title, description, urlSite, noIndex } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <Head {title} {description} {urlSite} {noIndex} />
+  <body class='flex flex-col w-full min-h-screen bg-white'>
+    <Navbar client:load transition:animate='none' />
+    <slot><main class='w-full h-full m-auto'>Loading...</main></slot>
+    <Toaster client:only />
+    <Toast client:only />
+    <ViewTransitions />
+    <WhatsappButton />
+    <Footer />
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+    </style>
+  </body>
+</html>

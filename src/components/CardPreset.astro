@@ -1,0 +1,42 @@
+---
+import { Button } from '@/components/ui/button';
+import { Image } from 'astro:assets';
+
+interface Props {
+  name: string;
+  link: string;
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
+}
+
+const { name, image, link } = Astro.props;
+---
+
+<div class='flex flex-col gap-4 lg:gap-6 items-center justify-center'>
+  <a
+    href={link}
+    class='rounded-lg w-fit h-fit overflow-hidden'
+    aria-label={name}
+  >
+    <Image
+      src={image.src}
+      width={image.width}
+      height={image.height}
+      alt={image.alt}
+      class='object-cover object-center w-[200px] h-[300px] lg:w-[350px] lg:h-[450px] rounded-lg hover:scale-105 duration-300 transition-all'
+      format='webp'
+      sizes={'(max-width: 1024px) 200px, 350px'}
+      quality={'low'}
+    />
+  </a>
+  <h3 class='text-black font-bold -mt-2'>{name}</h3>
+  <a href={link} aria-label={name}>
+    <Button variant={'default'} className='max-w-[200px] font-bold'>
+      Customize
+    </Button>
+  </a>
+</div>

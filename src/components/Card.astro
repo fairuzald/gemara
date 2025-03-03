@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  image: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
+  backgroundColor: string;
+  title: string;
+  description: string;
+}
+
+const { image, backgroundColor, title, description } = Astro.props;
+---
+
+<li
+  class:list={[
+    'flex-1 flex max-sm:flex-col rounded-lg overflow-hidden text-left items-stretch justify-between',
+    { color: !!backgroundColor },
+  ]}
+>
+  <div class='w-full max-sm:h-auto sm:max-w-[45%]'>
+    <Image
+      width={image.width}
+      height={image.height}
+      src={image.url}
+      alt={image.alt}
+      class={'object-cover object-center m-auto w-full h-full rounded-lg text-sm'}
+      sizes='(max-width: 640px) 100%, 45%'
+      quality={'low'}
+    />
+  </div>
+  <div
+    class='flex-1 p-7 lg:p-10 flex flex-col items-start lg:mt-7 gap-3 lg:gap-5'
+  >
+    <h3 class='font-tango-sans text-lg lg:text-xl font-bold text-gray-800'>
+      {title}
+    </h3>
+    <p class='font-helvetica text-sm lg:text-base text-black font-medium'>
+      {description}
+    </p>
+  </div>
+</li>
+
+<style define:vars={{ backgroundColor }}>
+  .color {
+    background-color: var(--backgroundColor);
+  }
+</style>

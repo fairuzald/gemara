@@ -1,0 +1,34 @@
+---
+import CardPreset from '../../components/CardPreset';
+import ToastClient from '../../components/ToastClient';
+import { presetData } from '../../data/preset-data';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+export const prerender = true;
+---
+
+<SiteLayout
+  title='Customize | Gemara'
+  description='Dive deep into the world of nostalgia with our exclusive range of accessories, each thoughtfully designed with beads that tell a story. At Gemara, we believe that every bead carries an essence of the past, a whisper of stories long told, and a touch of moments cherished. Our collections are more than just adornments; they are tangible memories, capturing the spirit of yesteryears, and blending them with modern design aesthetics.'
+  urlSite='https://gemara.site/customize'
+>
+  <main
+    class='text-black font-inter text-base bg-brown-lite overflow-auto min-h-screen w-full p-10 md:p-16 lg:p-20 flex flex-col gap-8'
+  >
+    <ToastClient client:load />
+    <h1
+      class='text-center font-black text-3xl lg:text-4xl font-helvetica tracking-widest'
+    >
+      Customization
+    </h1>
+    <h2 class='text-center font-bold text-lg lg:text-xl italic'>
+      It’s time to pour your ideas onto a blank canvas and create your own beads
+      that’s genuinely you.
+    </h2>
+    <CardPreset data={presetData} client:only='react' />
+    <h2
+      class='text-center font-bold text-lg lg:text-xl font-tango-sans tracking-wider'
+    >
+      Choose one of these preset for your own beads
+    </h2>
+  </main>
+</SiteLayout>
