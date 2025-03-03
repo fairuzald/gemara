@@ -25,6 +25,5 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     analytics: true,
-    nodeVersion: '18',
   }),
 });
