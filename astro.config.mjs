@@ -1,20 +1,20 @@
-import { defineConfig } from 'astro/config';
+import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel/serverless';
 import icon from 'astro-icon';
-import partytown from '@astrojs/partytown';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://gemara.site',
+  site: 'https://gemara.fairuzald.site',
   integrations: [
     react(),
     tailwind(),
     icon(),
     sitemap({
-      filter: (page) => page !== 'https://gemara.site/404/',
+      filter: (page) => page !== 'https://gemara.fairuzald.site/404/',
     }),
     partytown({
       config: {
@@ -25,5 +25,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     edgeMiddleware: true,
+    analytics: true,
+    nodeVersion: '18',
   }),
 });

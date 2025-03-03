@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404
 
-Sitemap: https://gemara.site/sitemap-index.xml
+Sitemap: https://gemara.fairuzald.site/sitemap-index.xml
