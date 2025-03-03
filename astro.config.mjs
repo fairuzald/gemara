@@ -22,12 +22,10 @@ export default defineConfig({
       },
     }),
   ],
-  output: 'static',
+  output: 'server',
   adapter: vercel({
     analytics: true,
     imageService: true,
-    functionConfig: {
-      runtime: 'nodejs20.x',
-    },
+    nodejs: 18,
   }),
 });
